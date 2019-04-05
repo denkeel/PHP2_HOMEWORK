@@ -14,4 +14,13 @@ class UserController extends Controller
         ];
         echo $this->render('user', $params);
     }
+
+    public function usersAction()
+    {
+        //var_dump(User::getAll());
+        $params = [
+          'users' => User::getAll()
+        ];
+        echo $this->render('users', $params);
+    }
 }
