@@ -1,0 +1,23 @@
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . '/../services/Autoload.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/../config/config.php';
+
+spl_autoload_register([new Autoload(), 'loadClass']);
+
+echo '<a href="/?c=user&a=user&id=1">Вывести пользователя 1 | </a>';
+echo '<a href="/?c=user&a=user&id=2">Вывести пользователя 2 | </a>';
+echo '<a href="/?c=user&a=users">Вывести всех пользователей | </a>';
+echo '<a href="/?c=user&a=userUpdate&id=2&name=Andrey">Сменить имя пользователя 2 на Andrey | </a>';
+echo '<a href="/?c=user&a=userUpdate&id=2&name=User">Сменить имя пользователя 2 на User | </a>';
+
+$controllerName = $_GET['c'] ?: 'user';
+$action = $_GET['a'];
+
+$controllersClass = 'App\\controllers\\' . ucfirst($controllerName) . 'Controller';
+
+if (class_exists($controllersClass)) {
+    $controller = new $controllersClass;
+    $controller->run($action);
+} else {
+    echo 'No url';
+}
