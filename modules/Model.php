@@ -19,6 +19,7 @@ abstract class Model implements IModel
     {
         $table = static::getTableName();
         $sql = "SELECT * FROM {$table} WHERE id = :id";
+        //var_dump($sql);
         //var_dump(BD::getInstance()->queryObject($sql, ['id' => $id], get_called_class()));
         return BD::getInstance()->queryObject($sql, ['id' => $id], get_called_class());
     }
@@ -28,6 +29,15 @@ abstract class Model implements IModel
         $table = static::getTableName();
         $sql = "SELECT * FROM {$table} ";
         return BD::getInstance()->queryObjects($sql, [], get_called_class());
+    }
+
+    public function update($id, $data)
+    {
+        $table = static::getTableName();
+        $sql = "UPDATE $table SET login = :name WHERE id = :id";
+        //var_dump($sql);
+        //var_dump(BD::getInstance()->queryObjects($sql, ['id' => $id, 'name' => $data], get_called_class()));
+        BD::getInstance()->queryObject($sql, ['id' => $id, 'name' => $data], get_called_class());
     }
 
     public function delete($id)
@@ -41,8 +51,8 @@ abstract class Model implements IModel
     {
         $params = [];
         $placeholders = [];
-        foreach ($this as $key => $value){
-            if ($key == 'bd'){
+        foreach ($this as $key => $value) {
+            if ($key == 'bd') {
                 continue;
             }
             $params[$key] = $value;

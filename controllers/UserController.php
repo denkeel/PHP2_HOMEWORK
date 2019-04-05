@@ -10,7 +10,7 @@ class UserController extends Controller
     {
         //var_dump(LAYOUT_DIR);
         $params = [
-          'user' => User::find($_GET['id'])
+            'user' => User::find($_GET['id']),
         ];
         echo $this->render('user', $params);
     }
@@ -19,8 +19,17 @@ class UserController extends Controller
     {
         //var_dump(User::getAll());
         $params = [
-          'users' => User::getAll()
+            'users' => User::getAll(),
         ];
         echo $this->render('users', $params);
+    }
+
+    public function userUpdateAction()
+    {
+        User::update($_GET['id'], $_GET['name']);
+        $params = [
+            'user' => User::find($_GET['id']),
+        ];
+        echo $this->render('update', $params);
     }
 }

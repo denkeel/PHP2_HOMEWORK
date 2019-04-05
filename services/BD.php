@@ -46,8 +46,11 @@ class BD implements IBD
 
     public function queryObject(string $sql, array $params = [], $class)
     {
+        //var_dump($params);
         $stm = $this->connect()->prepare($sql);
-        $stm->execute($params);
+        //var_dump($sql);
+        //var_dump($stm);
+        var_dump($stm->execute($params));
         $stm->setFetchMode(\PDO::FETCH_CLASS, $class);
         return $stm->fetch();
     }
