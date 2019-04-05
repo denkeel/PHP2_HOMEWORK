@@ -23,7 +23,7 @@ abstract class Controller
     public function render($template, $params = [])
     {
         $content = $this->renderTmpl($template, $params);
-        return $this->renderTmpl('layout/main', [
+        return $this->renderTmpl(LAYOUT_FOLDER . '/main', [
             'content' => $content
         ]);
     }
@@ -32,7 +32,7 @@ abstract class Controller
     {
         ob_start();
         extract($params);
-        include $_SERVER['DOCUMENT_ROOT'] . '/../views/' .  $template . '.php';
+        include VIEW_DIR .  $template . '.php';
         return ob_get_clean();
     }
 }

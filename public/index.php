@@ -1,5 +1,7 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/../services/Autoload.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/../config/config.php';
+
 spl_autoload_register([new Autoload(), 'loadClass']);
 
 echo '<a href="/?c=user&a=user&id=1">Вывести пользователя 1 | </a>';

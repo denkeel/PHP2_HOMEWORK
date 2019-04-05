@@ -8,6 +8,7 @@ class UserController extends Controller
 {
     public function userAction()
     {
+        //var_dump(LAYOUT_DIR);
         $params = [
           'user' => User::find($_GET['id'])
         ];
